@@ -5,7 +5,7 @@ const initialState = {
   loading: false,
 };
 
-export const getTodos = createAsyncThunk("posts/getPosts", async () => {
+export const getTodos = createAsyncThunk("todos/getTodos", async () => {
   try {
     const res = await fetch(
       "https://631753e382797be77ff9bf90.mockapi.io/necm/api/todos",
@@ -22,6 +22,21 @@ export const getTodos = createAsyncThunk("posts/getPosts", async () => {
   }
 });
 
+export const deleteTodo = createAsyncThunk("todos/deleteTodo", async (initialState) => {
+    try {
+        const { id } = initialState
+        console.log(initialState)
+        console.log(id)
+        const res = await fetch(`https://631753e382797be77ff9bf90.mockapi.io/necm/api/todos/${id}`, {
+            method: "DELETE"
+        })
+        if(res?.status === 200) return initialState
+        return `${res.status} : ${res.statusText}`
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 export const todoSlice = createSlice({
   name: "todos",
   initialState,
@@ -36,7 +51,16 @@ export const todoSlice = createSlice({
       })
       .addCase(getTodos.rejected, (state) => {
         state.loading = false;
-      });
+      })
+      .addCase(deleteTodo.fulfilled, (state,action) => {
+        if(!action?.payload.id){
+            console.log("Could not delete the todo!")
+            return
+        }
+        const { id } = action.payload
+        const oldTodos = state.todos.filter(todo=> todo.id !== id)
+        state.todos = oldTodos
+      })
   },
 });
 

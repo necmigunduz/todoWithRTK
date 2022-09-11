@@ -1,6 +1,11 @@
-import React from "react";
+import { useDispatch } from 'react-redux'
+import { deleteTodo } from "../api/apiSlice";
 
-const TodoCard = ({title, content, isCompleted}) => {
+const TodoCard = ({title, content, isCompleted, id}) => {
+  const dispatch = useDispatch()
+  const handleDelete = (id) => {
+    dispatch(deleteTodo({id: id}))
+  }
   return (
     <div className="rounded border bg-slate-800 text-white border-teal-200 rounded-lg m-2 shadow-xl">
       <div className="px-6 py-4">
@@ -10,7 +15,12 @@ const TodoCard = ({title, content, isCompleted}) => {
         </p>
         <div className="ml-2">
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-1">Edit</button>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-1">Delete</button>
+          <button 
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-1"
+            onClick={()=>handleDelete(id)}
+          >
+            Delete
+          </button>
         </div>
         <p className="text-right mr-4">
           Completed: {isCompleted}

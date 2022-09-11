@@ -21,6 +21,7 @@ const TodoList = () => {
       title={todo.content}
       content={todo.content}
       isCompleted={strfy(todo.isCompleted)}
+      id={todo.id}
     />
   ));
 
