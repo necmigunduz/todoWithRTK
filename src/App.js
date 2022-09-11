@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import NameEntry from "./pages/name";
-import PostList from "./pages/postList";
+import TodoList from "./pages/todoList";
 
 function App() {
   return (
     <Routes>
       <Route path='/' element={<NameEntry />} />
-      <Route path='/posts-list' element={<PostList />} />
+      <Route path='/todos-list' element={<TodoList />} />
     </Routes>
   );
 }

@@ -12,7 +12,7 @@ const NameEntry = () => {
     saveName(inputObject.name)
     const name = loadName()
     console.log(name)
-    navigate('/posts-list')
+    navigate('/todos-list')
   };
 
   return (

@@ -1,5 +1,5 @@
 import TopNav from "../components/topNav"
-const PostList = () => {
+const TodoList = () => {
    
   return (
     <div>
@@ -8,4 +8,4 @@ const PostList = () => {
   )
 }
 
-export default PostList
+export default TodoList
