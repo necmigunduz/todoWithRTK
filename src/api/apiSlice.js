@@ -19,19 +19,41 @@ export const getTodos = createAsyncThunk("todos/getTodos", async () => {
     console.log(error);
   }
 });
-
-export const deleteTodo = createAsyncThunk("todos/deleteTodo", async (initialState) => {
+export const createTodo = createAsyncThunk("todos/createTodo", async (data) => {
+  try {
+    const { title, content } = data;
+    const res = await fetch(
+      "https://631753e382797be77ff9bf90.mockapi.io/necm/api/todos",
+      {
+        method: "POST",
+        headers: { "Content-type": "application/json; charset=UTF-8" },
+        body: JSON.stringify({ title, content }),
+      }
+    );
+    const todo = await res.json();
+    return todo
+  } catch (error) {
+    console.log(error)
+  }
+});
+export const deleteTodo = createAsyncThunk(
+  "todos/deleteTodo",
+  async (initialState) => {
     try {
-        const { id } = initialState
-        const res = await fetch(`https://631753e382797be77ff9bf90.mockapi.io/necm/api/todos/${id}`, {
-            method: "DELETE"
-        })
-        if(res?.status === 200) return initialState
-        return `${res.status} : ${res.statusText}`
+      const { id } = initialState;
+      const res = await fetch(
+        `https://631753e382797be77ff9bf90.mockapi.io/necm/api/todos/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (res?.status === 200) return initialState;
+      return `${res.status} : ${res.statusText}`;
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
-})
+  }
+);
 
 export const todoSlice = createSlice({
   name: "todos",
@@ -48,14 +70,17 @@ export const todoSlice = createSlice({
       .addCase(getTodos.rejected, (state) => {
         state.loading = false;
       })
-      .addCase(deleteTodo.fulfilled, (state,action) => {
-        if(!action?.payload.id){
-            console.log("Could not delete the todo!")
-            return
+      .addCase(deleteTodo.fulfilled, (state, action) => {
+        if (!action?.payload.id) {
+          console.log("Could not delete the todo!");
+          return;
         }
-        const { id } = action.payload
-        const oldTodos = state.todos.filter(todo=> todo.id !== id)
-        state.todos = oldTodos
+        const { id } = action.payload;
+        const oldTodos = state.todos.filter((todo) => todo.id !== id);
+        state.todos = oldTodos;
+      })
+      .addCase(createTodo.fulfilled, (state,action) => {
+          state.todos = [...state.todos, action.payload]
       })
   },
 });
