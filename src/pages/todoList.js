@@ -7,7 +7,6 @@ import TodoCard from "../components/todoCard";
 const TodoList = () => {
   const dispatch = useDispatch();
   const { todos, loading } = useSelector((state) => state.todos);
-  console.log(todos);
   useEffect(() => {
     dispatch(getTodos());
   }, [dispatch]);

@@ -1,5 +1,7 @@
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom';
 import { deleteTodo } from "../api/apiSlice";
+import Button from './button';
 
 const TodoCard = ({title, content, isCompleted, id}) => {
   const dispatch = useDispatch()
@@ -14,13 +16,10 @@ const TodoCard = ({title, content, isCompleted, id}) => {
           {content}
         </p>
         <div className="ml-2">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-1">Edit</button>
-          <button 
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-1"
-            onClick={()=>handleDelete(id)}
-          >
-            Delete
-          </button>
+          <Link to={`/edit-post/${id}`}>
+            <Button btnName={'Edit'} />
+          </Link>
+          <Button btnName={'Delete'} onClick={()=>handleDelete(id)} />
         </div>
         <p className="text-right mr-4">
           Completed: {isCompleted}

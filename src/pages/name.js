@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import NameForm from "../components/nameForm";
-import { loadName, saveName } from '../localStorage/localStorage'
+import { saveName } from '../localStorage/localStorage'
 
 const NameEntry = () => {
   const navigate = useNavigate()
@@ -8,10 +8,7 @@ const NameEntry = () => {
     e.preventDefault()
     const formData = new FormData(e.target);
     const inputObject = Object.fromEntries(formData);
-    console.log(inputObject)
     saveName(inputObject.name)
-    const name = loadName()
-    console.log(name)
     navigate('/todos-list')
   };
 

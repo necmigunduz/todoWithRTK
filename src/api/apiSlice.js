@@ -14,8 +14,6 @@ export const getTodos = createAsyncThunk("todos/getTodos", async () => {
       }
     );
     const todos = await res.json();
-
-    console.log(todos);
     return todos;
   } catch (error) {
     console.log(error);
@@ -25,8 +23,6 @@ export const getTodos = createAsyncThunk("todos/getTodos", async () => {
 export const deleteTodo = createAsyncThunk("todos/deleteTodo", async (initialState) => {
     try {
         const { id } = initialState
-        console.log(initialState)
-        console.log(id)
         const res = await fetch(`https://631753e382797be77ff9bf90.mockapi.io/necm/api/todos/${id}`, {
             method: "DELETE"
         })
