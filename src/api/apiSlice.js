@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { act } from "react-dom/test-utils";
 
 const initialState = {
   todos: [],
@@ -31,9 +32,9 @@ export const createTodo = createAsyncThunk("todos/createTodo", async (data) => {
       }
     );
     const todo = await res.json();
-    return todo
+    return todo;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 });
 export const deleteTodo = createAsyncThunk(
@@ -49,6 +50,24 @@ export const deleteTodo = createAsyncThunk(
       );
       if (res?.status === 200) return initialState;
       return `${res.status} : ${res.statusText}`;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+export const updateTodo = createAsyncThunk(
+  "todos/updateTodo",
+  async (id, data) => {
+    try {         
+      const res = await fetch(
+        `https://631753e382797be77ff9bf90.mockapi.io/necm/api/todos/${id}`,
+        {
+          method: "PUT",
+          body: JSON.stringify(data)
+        }
+      );
+      const todo = res.json()
+      return todo
     } catch (error) {
       console.log(error);
     }
@@ -79,9 +98,13 @@ export const todoSlice = createSlice({
         const oldTodos = state.todos.filter((todo) => todo.id !== id);
         state.todos = oldTodos;
       })
-      .addCase(createTodo.fulfilled, (state,action) => {
-          state.todos = [...state.todos, action.payload]
+      .addCase(createTodo.fulfilled, (state, action) => {
+        state.todos = [...state.todos, action.payload];
       })
+      .addCase(updateTodo.fulfilled, (state, action) => {
+        const  {id} = action.payload
+        console.log(state.todos)
+      });
   },
 });
 

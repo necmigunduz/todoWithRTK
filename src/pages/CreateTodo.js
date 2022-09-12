@@ -14,11 +14,14 @@ const CreateTodo = () => {
     const formData = new FormData(e.target);
     const inputObject = Object.fromEntries(formData);
     console.log(inputObject)
+    const setCompleted = (inputObject.isCompleted === "true")
+    console.log(setCompleted)
     const data = {
       title: inputObject.title,
       content: inputObject.content,
-      isCompleted: inputObject.isCompleted,
+      isCompleted: setCompleted,
     }
+    console.log(typeof(data.isCompleted))
     dispatch(createTodo({data}))
     navigate('/todos-list')
   };

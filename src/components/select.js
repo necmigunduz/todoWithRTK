@@ -4,9 +4,9 @@ const Select = ({ name, label }) => {
   return (
     <div className="mt-4">
       <label htmlFor={name} className="p-1 mr-6 font-bold ml-1">{label}</label>
-      <select className="border" name={name}>
-        <option value="true">True</option>
-        <option value="false">False</option>
+      <select className="border rounded p-2 bg-white" name={name}>
+        <option value="false">No</option>
+        <option value="true">Yes</option>
       </select>
     </div>
   );
