@@ -27,7 +27,6 @@ export const deleteTodo = createAsyncThunk("todos/deleteTodo", async (initialSta
             method: "DELETE"
         })
         if(res?.status === 200) return initialState
-        console.log(res)
         return `${res.status} : ${res.statusText}`
     } catch (error) {
         console.log(error)
@@ -55,7 +54,6 @@ export const todoSlice = createSlice({
             return
         }
         const { id } = action.payload
-        console.log(id)
         const oldTodos = state.todos.filter(todo=> todo.id !== id)
         state.todos = oldTodos
       })
