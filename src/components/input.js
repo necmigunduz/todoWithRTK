@@ -4,7 +4,7 @@ const Input = ({ htmlFor, label, type, name, id, value, placeholder }) => {
   return (
     <>
       <label
-        className="block text-gray-700 text-sm font-bold mb-2"
+        className="block text-gray-700 text-sm font-bold ml-4"
         htmlFor={htmlFor}
       >{label}</label>
       <input
