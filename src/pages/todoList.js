@@ -32,7 +32,7 @@ const TodoList = () => {
   return (
     <div>
       <TopNav />
-      <div className="grid-cols-4 gap-4">{ListItems}</div>
+      <div className="grid md:grid-cols-4">{ListItems}</div>
     </div>
   );
 };
