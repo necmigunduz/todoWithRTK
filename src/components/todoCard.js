@@ -13,13 +13,16 @@ const TodoCard = ({ content, isCompleted, id}) => {
     <div className="rounded border bg-slate-800 text-white border-teal-200 rounded-lg m-2 shadow-xl">
       <div className="px-6 py-4">
         <Paragraph content={content} />        
-        <div className="ml-2">
+        <div className="mx-4">
           <Link to={`/edit-post/${id}`}>
             <Button btnName={'Edit'} />
           </Link>
-          <Button btnName={'Delete'} handleClick={()=> handleDelete(id)} />
+          <Button 
+            btnName={'Delete'} 
+            handleClick={()=> handleDelete(id)} 
+          />
         </div>
-        <p className="text-right mr-4">
+        <p className="text-center">
           Completed: {isCompleted}
         </p>
       </div>
