@@ -1,9 +1,9 @@
-# Horizontally Scrollable E-Commerce Page
+# Todo App using ReactJS with Redux Toolkit and TailwindCSS
 
-This is an app using CRUD operations with Redux Toolkit and React. For styling the project, Tailwind CSS is used. A user can create posts, view all the posts, edit posts, and delete posts. This app works ascynhronously and it does use the public api of `https://jsonplaceholder.typicode.com/posts` to store the information.
+This app is a simple TODO app developed by using ReactJS with Redux Toolkit, TailwindCSS, and Redux-Persist. MockAPI is used as backend to store the information. Redux-Persist is used to keep the information during the edit todo processes in case users refreshes the page. Local storage is used to keep username. 
 
 #### Page screenshot: 
-![screenshot](https://github.com/necmigunduz/crud-redux/blob/master/Screenshot.png)
+![screenshot](https://github.com/necmigunduz/todoWithRTK/blob/master/screenshot.png)
 
 ## Built With
 
@@ -12,12 +12,15 @@ This is an app using CRUD operations with Redux Toolkit and React. For styling t
 - HTML5,
 - CSS3,
 - Redux Toolkit,
-- Tailwind CSS.
+- Tailwind CSS,
+- Redux-Persist,
+- Local storage,
+- MockAPI.
 
 ## Getting Started
 ### To run the app
-- `git clone git@github.com:necmigunduz/crud-redux.git`,
-- `cd crud-redux`,
+- `git clone git@github.com:necmigunduz/todoWithRTK.git`,
+- `cd todoWithRTK`,
 - `npm install`,
 - `npm start`.
 
