@@ -62,7 +62,8 @@ export const updateTodo = createAsyncThunk(
         `https://631753e382797be77ff9bf90.mockapi.io/necm/api/todos/${id}`,
         {
           method: "PUT",
-          body: JSON.stringify({id, content, isCompleted})
+          body: JSON.stringify({id, content, isCompleted}),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
         }
       );
       const todo = res.json()
@@ -101,8 +102,10 @@ export const todoSlice = createSlice({
         state.todos = [...state.todos, action.payload];
       })
       .addCase(updateTodo.fulfilled, (state, action) => {
-        const  {id} = action.payload
-        console.log(state.todos)
+        const { id } = action.payload
+        let currentTodo = state.todos.filter((todo) => todo.id === id)
+        console.log(currentTodo)
+        currentTodo = [action.payload]
       });
   },
 });
