@@ -33,13 +33,6 @@ const CreateTodo = () => {
         </h1>
         <div className="mx-6">
           <Input 
-            htmlFor={"title"}
-            label={"Title of Todo"}
-            placeholder={"Enter a title for your new todo"}
-            type={"text"}
-            name={"title"}
-          />
-          <Input 
             htmlFor={"content"}
             label={"Content of Todo"} 
             placeholder={"Enter content of your new todo"}

@@ -17,7 +17,6 @@ const TodoList = () => {
   const ListItems = reversed_todos.map((todo) => (
     <TodoCard
       key={todo.id.toString()}
-      title={todo.content}
       content={todo.content}
       isCompleted={strfy(todo.isCompleted)}
       id={todo.id}

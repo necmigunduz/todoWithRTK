@@ -45,12 +45,6 @@ const CreateTodo = () => {
         </h1>
         <div className="mx-6">
           <Input 
-            htmlFor={"title"}
-            label={"Title of Todo"}
-            type={"text"}
-            name={"title"}
-          />
-          <Input 
             htmlFor={"content"}
             label={"Content of Todo"} 
             type={"text"}
