@@ -14,7 +14,7 @@ const NameEntry = () => {
 
   return (
     <>
-      <h1 className='font-bold my-2 text-center bg-slate-400 text-white py-8 text-3xl'>Welcome to Add Post App</h1>
+      <h1 className='font-bold my-2 text-center bg-slate-400 text-white py-8 text-3xl'>Welcome to TODO App</h1>
       <NameForm
         label={"Name"}
         type={"text"}
