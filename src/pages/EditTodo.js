@@ -18,7 +18,7 @@ const CreateTodo = () => {
   console.log(todos)
   const currentTodo = todos.filter(
     (todo) => Number(todo.id) === Number(ID)
-  );
+  );  
   const { content, id, isCompleted } = currentTodo[0];
   const [values, setValues] = useState({
     content,
