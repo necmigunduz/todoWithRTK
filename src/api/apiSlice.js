@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { act } from "react-dom/test-utils";
 
 const initialState = {
   todos: [],
@@ -22,13 +21,13 @@ export const getTodos = createAsyncThunk("todos/getTodos", async () => {
 });
 export const createTodo = createAsyncThunk("todos/createTodo", async (data) => {
   try {
-    const { title, content } = data;
+    const { content, isCompleted } = data;
     const res = await fetch(
       "https://631753e382797be77ff9bf90.mockapi.io/necm/api/todos",
       {
         method: "POST",
         headers: { "Content-type": "application/json; charset=UTF-8" },
-        body: JSON.stringify({ title, content }),
+        body: JSON.stringify({content, isCompleted }),
       }
     );
     const todo = await res.json();
@@ -57,13 +56,13 @@ export const deleteTodo = createAsyncThunk(
 );
 export const updateTodo = createAsyncThunk(
   "todos/updateTodo",
-  async (id, data) => {
+  async ({id, content, isCompleted}) => {
     try {         
       const res = await fetch(
         `https://631753e382797be77ff9bf90.mockapi.io/necm/api/todos/${id}`,
         {
           method: "PUT",
-          body: JSON.stringify(data)
+          body: JSON.stringify({id, content, isCompleted})
         }
       );
       const todo = res.json()

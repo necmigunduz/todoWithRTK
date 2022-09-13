@@ -33,7 +33,7 @@ const CreateTodo = () => {
       content: inputObject.content,
       isCompleted: setCompleted,
     }
-    dispatch(updateTodo(params.id, data))
+    dispatch(updateTodo(data))
     navigate('/todos-list')
   };
   return (

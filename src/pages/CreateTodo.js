@@ -17,12 +17,11 @@ const CreateTodo = () => {
     const setCompleted = (inputObject.isCompleted === "true")
     console.log(setCompleted)
     const data = {
-      title: inputObject.title,
       content: inputObject.content,
       isCompleted: setCompleted,
     }
     console.log(typeof(data.isCompleted))
-    dispatch(createTodo({data}))
+    dispatch(createTodo(data))
     navigate('/todos-list')
   };
   return (
